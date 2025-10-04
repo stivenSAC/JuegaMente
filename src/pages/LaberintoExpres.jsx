@@ -67,7 +67,7 @@ const LaberintoExpres = () => {
         setMoves(moves + 1);
         
         if (currentMaze[newY][newX] === 2) {
-          setScore(score + Math.max(100 - moves, 10));
+          setScore(prevScore => prevScore + Math.max(100 - moves, 10));
           setModalType('success');
           setModalMessage(`¡Nivel ${level} completado! ¿Continuar al siguiente nivel?`);
           setShowModal(true);
@@ -77,7 +77,7 @@ const LaberintoExpres = () => {
 
     window.addEventListener('keydown', handleKeyPress);
     return () => window.removeEventListener('keydown', handleKeyPress);
-  }, [isPlaying, playerPos, moves]);
+  }, [isPlaying, playerPos, moves, currentMaze, level]);
 
   const startGame = () => {
     setPlayerPos({ x: 0, y: 0 });

@@ -15,7 +15,7 @@ import ColorMatch from './pages/ColorMatch';
 import PatronVisual from './pages/PatronVisual';
 import OrdenaSerie from './pages/OrdenaSerie';
 import RetoRelampago from './pages/RetoRelampago';
-import GamePlaceholder from './components/games/GamePlaceholder';
+
 
 function App() {
   return (
