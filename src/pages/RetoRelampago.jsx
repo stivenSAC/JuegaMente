@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 
@@ -90,17 +90,19 @@ const RetoRelampago = () => {
     let questionTimer;
     if (isPlaying && questionTime > 0 && currentQuestion) {
       questionTimer = setTimeout(() => setQuestionTime(questionTime - 1), 1000);
-    } else if (questionTime === 0) {
-      generateQuestion();
+    } else if (questionTime === 0 && isPlaying) {
+      const randomQuestion = questions[Math.floor(Math.random() * questions.length)];
+      setCurrentQuestion(randomQuestion);
+      setQuestionTime(5);
     }
     return () => clearTimeout(questionTimer);
-  }, [isPlaying, questionTime, currentQuestion, generateQuestion]);
+  }, [isPlaying, questionTime, currentQuestion, questions]);
 
-  const generateQuestion = useCallback(() => {
+  const generateQuestion = () => {
     const randomQuestion = questions[Math.floor(Math.random() * questions.length)];
     setCurrentQuestion(randomQuestion);
     setQuestionTime(5);
-  }, [questions]);
+  };
 
   const startGame = () => {
     setScore(0);
