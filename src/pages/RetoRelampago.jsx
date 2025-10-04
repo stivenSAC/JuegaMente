@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 
@@ -11,7 +11,7 @@ const RetoRelampago = () => {
   const [timeLeft, setTimeLeft] = useState(45);
   const [questionTime, setQuestionTime] = useState(5);
 
-  const questions = [
+  const questions = useMemo(() => [
     { q: "¿Cuánto es 7 + 8?", options: ["14", "15", "16", "17"], correct: 1 },
     { q: "¿Capital de Francia?", options: ["Londres", "París", "Madrid", "Roma"], correct: 1 },
     { q: "¿Cuánto es 12 × 3?", options: ["35", "36", "37", "38"], correct: 1 },
@@ -62,7 +62,7 @@ const RetoRelampago = () => {
     { q: "¿Metal más abundante en la Tierra?", options: ["Hierro", "Aluminio", "Cobre", "Oro"], correct: 1 },
     { q: "¿Cuánto es 13 × 6?", options: ["76", "78", "80", "82"], correct: 1 },
     { q: "¿Continentes que existen?", options: ["5", "6", "7", "8"], correct: 2 }
-  ];
+  ], []);
 
   useEffect(() => {
     const savedScore = localStorage.getItem("bestScore_reto");
